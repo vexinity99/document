@@ -195,11 +195,13 @@
     sendButton.addEventListener('click', async () => {
         const userMessage = userInput.value.trim();
         if (!userMessage) return;
-        
+
+        // Display the user message in chat
         displayMessage(userMessage, true);
-        
+
         userInput.value = '';
 
+        // Fetch and display the AI response
         const aiResponse = await fetchAIResponse(userMessage);
         displayMessage(aiResponse);
     });
