@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>document LOL</title>
+    <title>AI Chat Interface</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,7 +42,7 @@
             border: 1px solid #555;
             border-radius: 4px;
             margin-bottom: 10px;
-            text-align: center;
+            text-align: center; /* Centers the placeholder text */
         }
         #submit-password {
             padding: 10px 20px;
@@ -122,13 +122,14 @@
 <body>
 
 <div id="password-container">
-    <div id="password-header">Loading...</div>
+    <div id="password-header">this website is made by michael N, if your from GLMS, GET OUTTT SKIBIDI</div>
     <input type="password" id="password-input" placeholder="Enter password..." />
     <button id="submit-password">Submit</button>
 </div>
 
 <div id="chat-container" style="display: none;">
     <div id="chat-box">
+        <!-- AI responses and user messages will appear here -->
     </div>
     <div id="input-container">
         <input type="text" id="user-input" placeholder="Type your message..." />
@@ -137,28 +138,12 @@
 </div>
 
 <script>
-    let correctPassword = ""; // Initialize the password variable
-
-    // Fetch the title from GitHub
-    fetch('https://raw.githubusercontent.com/vexinity99/csshelpassets/refs/heads/main/title.txt')
-        .then(response => response.text())
-        .then(titleText => {
-            document.getElementById('password-header').innerText = titleText.trim(); // Set the title
-        });
-
-    // Fetch the password from GitHub
-    fetch('https://raw.githubusercontent.com/vexinity99/csshelpassets/refs/heads/main/password.txt')
-        .then(response => response.text())
-        .then(passwordText => {
-            correctPassword = passwordText.trim(); // Set the correct password
-        });
-
+    const correctPassword = "css99";
     const passwordInput = document.getElementById('password-input');
     const submitPasswordButton = document.getElementById('submit-password');
     const passwordContainer = document.getElementById('password-container');
     const chatContainer = document.getElementById('chat-container');
-
-    // Event listener for password submission
+    
     submitPasswordButton.addEventListener('click', () => {
         if (passwordInput.value === correctPassword) {
             passwordContainer.style.display = 'none';
@@ -172,6 +157,7 @@
     const sendButton = document.getElementById('send-button');
     const chatBox = document.getElementById('chat-box');
 
+    // Function to display messages in the chat box
     function displayMessage(message, isUser = false) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', isUser ? 'user-message' : 'ai-response');
@@ -180,8 +166,9 @@
         chatBox.scrollTop = chatBox.scrollHeight;
     }
 
+    // Function to fetch AI response from the API
     async function fetchAIResponse(prompt) {
-        const url = `https://tilki.dev/api/hercai?soru=${encodeURIComponent(prompt)}`;
+        const url = https://tilki.dev/api/hercai?soru=${encodeURIComponent(prompt)};
         try {
             const response = await fetch(url);
             const data = await response.json();
@@ -192,26 +179,30 @@
         }
     }
 
+    // Event listener for the Send button
     sendButton.addEventListener('click', async () => {
         const userMessage = userInput.value.trim();
         if (!userMessage) return;
-
-        // Display the user message in chat
+        
+        // Display user message
         displayMessage(userMessage, true);
-
+        
+        // Clear input
         userInput.value = '';
 
-        // Fetch and display the AI response
+        // Fetch and display AI response
         const aiResponse = await fetchAIResponse(userMessage);
         displayMessage(aiResponse);
     });
 
+    // Allow Enter key to submit the message
     userInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             sendButton.click();
         }
     });
 
+    // Redirect to clever.com on CTRL + Q
     document.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.key === 'q') {
             window.location.href = "https://clever.com";
