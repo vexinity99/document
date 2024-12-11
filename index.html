@@ -144,14 +144,8 @@
     const passwordContainer = document.getElementById('password-container');
     const chatContainer = document.getElementById('chat-container');
     
-    submitPasswordButton.addEventListener('click', () => {
-        if (passwordInput.value === correctPassword) {
-            passwordContainer.style.display = 'none';
+    passwordContainer.style.display = 'none';
             chatContainer.style.display = 'block';
-        } else {
-            alert("Incorrect password. Please try again.");
-        }
-    });
 
     const userInput = document.getElementById('user-input');
     const sendButton = document.getElementById('send-button');
